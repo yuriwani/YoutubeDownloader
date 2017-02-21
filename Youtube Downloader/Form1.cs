@@ -135,9 +135,9 @@ namespace Youtube_Downloader
         public void ShowProgressReport(int nPercent, long lRecieved, long lSize)
         {
             if (nPercent == 100)
-                this.Text = "Youtube Downloader";
+                labelDownloadStatus.Text = "";
             else
-                this.Text = String.Format("Downloading... {0}% complete. ({1}/{2} Bytes)", nPercent, lRecieved, lSize);           
+                labelDownloadStatus.Text = String.Format("Downloading... {0}% complete. ({1}/{2} Bytes)", nPercent, lRecieved, lSize);           
         }
         
 

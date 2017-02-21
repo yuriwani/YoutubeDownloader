@@ -37,6 +37,7 @@
             this.btnClipboard = new System.Windows.Forms.Button();
             this.listboxVideo = new System.Windows.Forms.ListBox();
             this.labelInfomation = new System.Windows.Forms.Label();
+            this.labelDownloadStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDownload
@@ -126,11 +127,20 @@
             this.labelInfomation.Size = new System.Drawing.Size(0, 16);
             this.labelInfomation.TabIndex = 8;
             // 
+            // labelDownloadStatus
+            // 
+            this.labelDownloadStatus.AutoSize = true;
+            this.labelDownloadStatus.Location = new System.Drawing.Point(81, 320);
+            this.labelDownloadStatus.Name = "labelDownloadStatus";
+            this.labelDownloadStatus.Size = new System.Drawing.Size(0, 12);
+            this.labelDownloadStatus.TabIndex = 9;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(641, 358);
+            this.Controls.Add(this.labelDownloadStatus);
             this.Controls.Add(this.labelInfomation);
             this.Controls.Add(this.listboxVideo);
             this.Controls.Add(this.btnClipboard);
@@ -159,6 +169,7 @@
         private System.Windows.Forms.Button btnClipboard;
         private System.Windows.Forms.ListBox listboxVideo;
         private System.Windows.Forms.Label labelInfomation;
+        private System.Windows.Forms.Label labelDownloadStatus;
     }
 }
 

@@ -190,22 +190,24 @@ namespace VideoDownloader
 
             try
             {
+                Uri URL;
                 // retrieve signature if encoded
                 if (streamInfo.nvcParsedStreamFormat["sig"] == null)
                 {
-                    if (streamInfo.nvcParsedStreamFormat["s"] != null)
+                    if (streamInfo.nvcParsedStreamFormat["s"] == null)
+                        URL = new Uri(streamInfo.nvcParsedStreamFormat["url"]);
+                    else
                     {
                         string signature = DecodeSignature(m_strJScript, streamInfo.nvcParsedStreamFormat["s"]);
                         if (signature == null)
                             throw new VideoDownloader_Exception("Failed to decode signature.");
                         else
-                            streamInfo.nvcParsedStreamFormat["sig"] = signature;
+                            URL = new Uri(streamInfo.nvcParsedStreamFormat["url"] + "&signature=" + signature);
                     }
-                    else
-                        throw new VideoDownloader_Exception("No signature found.");
                 }
+                else
+                    URL = new Uri(streamInfo.nvcParsedStreamFormat["url"] + "&signature=" + streamInfo.nvcParsedStreamFormat["sig"]);
 
-                Uri URL = new Uri(streamInfo.nvcParsedStreamFormat["url"] + "&signature=" + streamInfo.nvcParsedStreamFormat["sig"]);
 
                 Debug.WriteLine("s={0}",streamInfo.nvcParsedStreamFormat["s"]);
                 Debug.WriteLine("sig={0}",streamInfo.nvcParsedStreamFormat["sig"]);

@@ -12,6 +12,7 @@ namespace Youtube_Downloader
     {
         //public const string PATH_DOWNLOAD_FOLDER = @"C:\Users\yuri\Desktop\test videos\";
         public const string PATH_DOWNLOAD_FOLDER = @".\";
+        const string FORBIDDENCHARS = "<>|*:!?\"/";
 
         YoutubeDownload clsYoutubeDownloader;
         List<YoutubeDownload.StreamInfo> listStreamInfo;
@@ -39,6 +40,10 @@ namespace Youtube_Downloader
             int intIndex = listboxFormat.SelectedIndex;
 
             string strFilename = listStreamInfo[intIndex].strTitle + "." + listStreamInfo[intIndex].strFiletype;
+            // sanitize filename
+            foreach (char c in FORBIDDENCHARS)
+                strFilename = strFilename.Replace(c, ' ');
+
             while (System.IO.File.Exists(PATH_DOWNLOAD_FOLDER + strFilename))
             {
                 strFilename = "_" + strFilename;
@@ -53,6 +58,7 @@ namespace Youtube_Downloader
         {
             textboxURL.Enabled = false;
             btnFind.Enabled = false;
+            btnDownload.Enabled = false;
 
             listStrVideoID.Clear();
             listboxFormat.Items.Clear();
@@ -72,6 +78,7 @@ namespace Youtube_Downloader
                     listboxVideo.Items.Add(strVideoID);
                 }
                 labelInfomation.Text = string.Format("{0} videos found in the Playlist", listStrVideoID.Count);
+                btnDownload.Enabled = true;
             }
             else
             {

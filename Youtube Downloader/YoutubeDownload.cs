@@ -414,6 +414,13 @@ namespace VideoDownloader
 
             //// exctract DecoderFunction from JScript
             Regex regex1 = new Regex(YoutubeConst.NAME_PATTERN_DECODER_FINDER, RegexOptions.Singleline);
+            var matches = regex1.Matches(strJScript);
+            if (matches.Count == 0)
+            {
+                Debug.WriteLine("Failed to find Decoder Function in JScript.");
+                return null;
+            }
+
             string strDecoderName = regex1.Matches(strJScript)[0].Groups["DecorderName"].Value;
             string strDecoderFunction = Regex.Match(strJScript, YoutubeConst.NAME_PATTERN_FUNCTION.Replace("#FUNCNAME#", strDecoderName)).Value;
 
